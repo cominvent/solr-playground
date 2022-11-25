@@ -1,5 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "enabledManagers": ["gradle"],
   "gradle": {
     "fileMatch": ["^versions.lock$", "^versions.props$"]
   }
