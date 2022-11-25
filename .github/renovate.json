@@ -2,14 +2,18 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "enabledManagers": ["gradle", "pip_requirements"],
   "gradle": {
-    "fileMatch": ["^versions.lock$", "^versions.props$"]
+    "fileMatch": ["^_versions.lock$", "^_versions.props$"]
   },
   "ignorePaths": ["gradle/**", "solr/**", "buildSrc/**", "dev-docs/solr-missing-doclet/**", "settings.gradle"],
   "regexManagers": [
     {
       "fileMatch": ["^versions.props$"],
-      "matchStrings": ["(?<depName>.*?)=(?<currentValue>.*)\\n"],
-      "depNameTemplate": "",
+      "matchStrings": ["^(?<depName>.*?)=(?<currentValue>.*)$"],
+      "datasourceTemplate": "maven"
+    },
+    {
+      "fileMatch": ["^versions.lock$"],
+      "matchStrings": ["(?<depName>.*?)=(?<currentValue>.*?) .*$"],
       "datasourceTemplate": "maven"
     }
   ]
