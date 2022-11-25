@@ -1,6 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "enabledManagers": ["gradle", "pip_requirements"],
+  "enabledManagers": ["gradle", "pip_requirements", "regex"],
   "ignorePaths": ["gradle/**", "solr/**", "buildSrc/**", "dev-docs/solr-missing-doclet/**", "settings.gradle"],
   "regexManagers": [
     {
