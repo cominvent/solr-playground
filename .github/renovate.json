@@ -1,17 +1,10 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "enabledManagers": ["gradle", "pip_requirements", "regex"],
-  "ignorePaths": ["gradle/**", "solr/**", "buildSrc/**", "dev-docs/solr-missing-doclet/**", "settings.gradle"],
-  "regexManagers": [
-    {
-      "fileMatch": ["^versions.props$"],
-      "matchStrings": ["(?<depName>[^:]+:[^=]+)=(?<currentValue>.*)\\n"],
-      "datasourceTemplate": "maven"
-    },
-    {
-      "fileMatch": ["^versions.lock$"],
-      "matchStrings": ["(?<depName>[^:]+:[^:]+):(?<currentValue>[^ ]+) .*\\n"],
-      "datasourceTemplate": "maven"
-    }
-  ]
+  "enabledManagers": ["gradle"],
+  "ignorePaths": ["gradle/**", "solr/**", "buildSrc/**", "dev-docs/solr-missing-doclet/**"],
+  "postUpgradeTasks": {
+    "commands": ["./gradlew updateLicenses"],
+    "fileFilters": ["solr/licenses/*.sha1"],
+    "executionMode": "branch"
+  }
 }
