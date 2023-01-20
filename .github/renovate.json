@@ -7,5 +7,12 @@
     "commands": ["./gradlew updateLicenses"],
     "fileFilters": ["solr/licenses/*.sha1"],
     "executionMode": "branch"
-  }
+  },
+  "packageRules": [
+    {
+      "matchDatasources": ["maven"],
+      "matchPackageNames": ["commons-collections:commons-collections", "commons-io:commons-io", "commons-lang:commons-lang"],
+      "versioning": "regex:^(?<major>\\d{1,4})\\.(?<minor>\\d+)(\\.(?<patch>\\d+))?$"
+    }
+  ]
 }
