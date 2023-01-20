@@ -26,7 +26,7 @@ plugins {
   id 'de.thetaphi.forbiddenapis' version '3.4' apply false
   id "de.undercouch.download" version "5.2.0" apply false
   id "net.ltgt.errorprone" version "3.0.1" apply false
-  id 'com.diffplug.spotless' version "6.5.2" apply false
+  id 'com.diffplug.spotless' version "6.13.0" apply false
   id 'com.github.node-gradle.node' version '3.4.0' apply false
 }
 
