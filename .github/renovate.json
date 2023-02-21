@@ -17,6 +17,10 @@
     {
       "matchPackagePrefixes": ["software.amazon.awssdk"],
       "extends": ["schedule:monthly"]
+    },
+    {
+      "matchPackageNames": ["solr:modules", "HH:mm"],
+      "enabled": false
     }
   ],
   "prConcurrentLimit": 10
