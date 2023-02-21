@@ -13,6 +13,15 @@
       "matchDatasources": ["maven"],
       "matchPackageNames": ["commons-collections:commons-collections", "commons-io:commons-io", "commons-lang:commons-lang"],
       "versioning": "regex:^(?<major>\\d{1,4})\\.(?<minor>\\d+)(\\.(?<patch>\\d+))?$"
+    },
+    {
+      "matchPackagePrefixes": ["software.amazon.awssdk"],
+      "extends": ["schedule:monthly"]
     }
-  ]
+  ],
+  "schedule": [
+    "every weekend",
+    "at any time"
+  ],
+  "prConcurrentLimit": 10
 }
