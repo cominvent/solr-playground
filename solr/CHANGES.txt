@@ -49,6 +49,12 @@ New Features
 
 * SOLR-16532: New OpenTelemetry (OTEL) module with OTLP/gRPC trace exporter. See ref.guide. (janhoy, David Smiley)
 
+* SOLR-16596: Learning To Rank - Added support for null feature values in multiple additive trees models (Anna Ruggero via Alessandro Benedetti)
+
+* SOLR-16608: Ability to compress state.json in Zookeeper (Justin Sweeney via noble)
+
+* SOLR-16646: New function query operator isnan to verify if value is NaN (Gabriel Magno via Kevin Risden)
+
 Improvements
 ---------------------
 
@@ -123,6 +129,29 @@ Improvements
 
 * SOLR-15772: More visible security warnings in Admin UI (janhoy)
 
+* SOLR-6312: SolrJ Cloud clients now correctly support isUpdatesToLeaders() being false.  This behavior can also be
+  configured per AbstractUpdateRequest instance.  (hossman)
+
+* SOLR-16635: Resolve crypto keys file path in MiniSolrCloudCluster. This eliminates the need to set the system
+  properties `pkiHandlerPublicKeyPath` and `pkiHandlerPrivateKeyPath` before starting MiniSolrCloudCluster when using
+  the Solr test framework. (Tomás Fernández Löbbe)
+
+* SOLR-16618: Admin UI Analysis page should include dynamic fields (Alex Deparvu via Eric Pugh)
+
+* SOLR-16590: Standardize Builder method names on SolrClient's to use the with pattern, deprecating the use of set or bare property name.  (Eric Pugh)
+
+* SOLR-16595: Standardize Builder methods handling of times to use require a TimeUnit to be passed in.  Deprecated methods that
+  do not specify a TimeUnit.  (Eric Pugh)
+
+* SOLR-11029: A v2 equivalent of the `/admin/collections?action=DELETENODE` command is now available at
+  `POST /api/cluster/nodes/nodeName/clear`. (Bence Szabo via Jason Gerlowski)
+
+* SOLR-16665: The base docker image has been upgraded from Ubuntu 20 (Focal) to Ubuntu 22 (Jammy). (Houston Putman)
+
+* SOLR-16462: v2 equivalents of the "Core Admin" `LISTSNAPSHOT`, `CREATESNAPSHOT`, and `DELETESNAPSHOT` commands are now available at
+  `GET /api/cores/coreName/snapshots`, `POST /api/cores/coreName/snapshots/snapshotName`, and
+  `DELETE /api/cores/coreName/snapshots/snapshotName`, respectively  (John Durham via Jason Gerlowski)
+
 Optimizations
 ---------------------
 
@@ -132,6 +161,9 @@ Optimizations
 
 * SOLR-15732: queries to missing collection are slow (noble)
 
+* SOLR-15616: Allow thread metrics to be cached (Ishan Chattopadhyaya, ab)
+
+* SOLR-16615: Jersey 'ApplicationHandlers' are now shared by compatible cores where possible (Jason Gerlowski, Houston Putman)
 
 Bug Fixes
 ---------------------
@@ -171,6 +203,22 @@ Bug Fixes
 
 * SOLR-16621: Admin UI fails to grant user permissions that have wildcard role (janhoy)
 
+* SOLR-16631: solr.allowUrls (former solr.shardsWhitelist) should treat hostnames in case insensitive way. (Paul Blanchaert via Eric Pugh)
+
+* SOLR-16647: Fix circuit breaker examples in solrconfig.xml (Colvin Cowie via Kevin Risden)
+
+* SOLR-16648: NullPointerException when excluding facets in More Like This Handler (Mikhail Khludnev)
+
+* SOLR-16628: Ensure that InputStreams are closed after Xml parsing (Michael Gibney, David Smiley, Kevin Risden)
+
+* SOLR-16639: Fix jq parse error of solr-exporter metrics node_thread_pool_completed_total (Naoto Minami)
+
+* SOLR-16658: List of permissions returned to Admin UI is not complete (janhoy)
+
+* SOLR-9698: Fix start/stop wait time and RMI_PORT on Windows (Colvin Cowie)
+
+SOLR-16653: Shard split on PRS collections with NRT + PULL replicas lead to down replicas (Hitesh Khamesra via noble)
+
 Build
 ---------------------
 * Upgrade forbiddenapis to 3.4 (Uwe Schindler)
@@ -191,6 +239,8 @@ Build
 
 * SOLR-16625: Upgrade OWASP dependency check to 8.0.1 (Kevin Risden)
 
+* SOLR-16641: Generate gradle.properties from gradlew, if absent (Colvin Cowie)
+
 Other Changes
 ---------------------
 * SOLR-16545: Upgrade Carrot2 to 4.5.0 (Dawid Weiss)
@@ -199,8 +249,6 @@ Other Changes
   generically on localhost. (Mike Drob)
 
 * SOLR-16481: Upgrade Bats to 1.8.0 (Kevin Risden)
-
-* SOLR-16443: Upgrade Jackson bom to 2.13.4.20221013 (Kevin Risden)
 
 * SOLR-16467: Upgrade semver4j to 2.2.0 to fix failures with some locales (Kevin Risden)
 
@@ -213,8 +261,6 @@ Other Changes
 * SOLR-15861: ConcurrentUpdateSolrClient should work with ManagedExecutorService (Sammy Chu, Kevin Risden)
 
 * SOLR-16575: splitshard should honour createNodeSet (noble)
-
-* SOLR-16568: Upgrade woodstox-core to 6.4.0 (Kira Traynor)
 
 * SOLR-16579: Upgrade Jackson to 2.14.1 (Kevin Risden)
 
@@ -232,19 +278,50 @@ Other Changes
 
 * SOLR-16544: Improve documentation on how to contribute to Solr (Justin Sweeney)
 
+* SOLR-16591: The "Transient Cores" feature is now deprecated.  In solr.xml "<transientCoreCacheFactory>"
+  no longer works; it wasn't documented either.  Some internals were changed as well to simplify
+  the standard case of having no transient cores.  (David Smiley)
+
 * SOLR-16626: Upgrade to Netty 4.1.87.Final (Kevin Risden)
+
+* SOLR-16627: Upgrade google-cloud-bom to 0.184.0, re2j to 1.6, and grpc to 1.51.0 (Kevin Risden)
+
+* SOLR-16629: Replace Solr thread safety annotations with JCIP. (David Smiley)
+
+* SOLR-16632: Add core name to periodic delete related log messages (Bence Szabo via Andras Salamon)
+
+* SOLR-15955: Upgrade to Jetty 10.x (Mark Miller, Kevin Risden)
+
+* SOLR-16573: Introduce EmbeddedSolrServerTestRule, a JUnit 4 TestRule for Solr testing
+  (Joshua Ouma, David Smiley)
+
+* SOLR-15733: Separate out a solrj-streaming module (Joel Bernstein, Kevin Risden)
+
+* SOLR-15928: Dim 'Add Collection' and 'Create Alias' buttons when user lacks proper permissions (janhoy)
 
 ==================  9.1.1 ==================
 
 Bug Fixes
 ---------------------
+
 * SOLR-16589: Large fields with large=true can be truncated when using unicode values (Kevin Risden)
 
 * SOLR-16585: Fixed NPE when paginating MatchAllDocs with non-zero start offset, like q=*:*&start=10 (Michael Gibney)
 
-* SOLR-16567: Fixed problem with filtering and KNN search, especially when using post-filters (Alessandro Benedetti)
-
 * SOLR-16165: Rare Deadlock in SlotAcc initialization (Justin Sweeney, noble)
+
+* SOLR-16622: Replicas don't come up active after node restart (noble, Ishan Chattopadhyaya)
+
+Other Changes
+---------------------
+
+* SOLR-16443: Upgrade Jackson bom to 2.13.4.20221013 (Kevin Risden)
+
+* SOLR-16568: Upgrade woodstox-core to 6.4.0 (Kira Traynor)
+
+* SOLR-16598: Upgrade Protobuf to 3.21.12 (David Smiley)
+
+* SOLR-16567: Fixed problem with filtering and KNN search, especially when using post-filters (Alessandro Benedetti)
 
 * SOLR-16588: Fixed problem with default knn algorithm (Elia Porciani via Alessandro Benedetti)
 
