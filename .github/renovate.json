@@ -43,6 +43,5 @@
   ],
   "labels": ["dependencies"],
   "prConcurrentLimit": 100,
-  "prHourlyLimit": 5,
   "stabilityDays": 5
 }
