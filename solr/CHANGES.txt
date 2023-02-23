@@ -217,7 +217,13 @@ Bug Fixes
 
 * SOLR-9698: Fix start/stop wait time and RMI_PORT on Windows (Colvin Cowie)
 
-SOLR-16653: Shard split on PRS collections with NRT + PULL replicas lead to down replicas (Hitesh Khamesra via noble)
+* SOLR-16653: Shard split on PRS collections with NRT + PULL replicas lead to down replicas (Hitesh Khamesra via noble)
+
+* SOLR-16670: Fix directory/file check in S3Repository (Houston Putman, Hakan Özler)
+
+* SOLR-16668: Use default to Java SSL for Http2SolrClient when none is provided (Houston Putman)
+
+* SOLR-16669: Http2SolrClient now defaults checkPeerName to True, as the documentation specified (Houston Putman)
 
 Build
 ---------------------
@@ -292,12 +298,18 @@ Other Changes
 
 * SOLR-15955: Upgrade to Jetty 10.x (Mark Miller, Kevin Risden)
 
+* SOLR-15959: Deprecate loading of solr.xml from Zookeeper (janhoy)
+
 * SOLR-16573: Introduce EmbeddedSolrServerTestRule, a JUnit 4 TestRule for Solr testing
   (Joshua Ouma, David Smiley)
+
+* SOLR-16660: Deprecate analytics component (janhoy)
 
 * SOLR-15733: Separate out a solrj-streaming module (Joel Bernstein, Kevin Risden)
 
 * SOLR-15928: Dim 'Add Collection' and 'Create Alias' buttons when user lacks proper permissions (janhoy)
+
+* SOLR-16672: Simplify SolrCLI Healthcheck command's logic for obtaining a target collection (Eric Pugh)
 
 ==================  9.1.1 ==================
 
