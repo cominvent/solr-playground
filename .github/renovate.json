@@ -2,7 +2,7 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "description": "Runs Renovate with solrbot, see dev-docs/dependency-upgrades.adoc for more",
   "enabled": true,
-  "dependencyDashboard": false,
+  "dependencyDashboard": true,
   "enabledManagers": ["gradle"],
   "includePaths": ["versions.*", "build.gradle"],
   "postUpgradeTasks": {
