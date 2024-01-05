@@ -26,7 +26,7 @@
 #-#
 #-#
 
-LABEL org.opencontainers.image.title="Apache Solr"
+LABEL org.opencontainers.image.title="Apache Solr TEST"
 LABEL org.opencontainers.image.description="Apache Solr is the popular, blazing-fast, open source search platform built on Apache Lucene."
 LABEL org.opencontainers.image.authors="The Apache Solr Project"
 LABEL org.opencontainers.image.url="https://solr.apache.org"
